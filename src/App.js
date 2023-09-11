@@ -11,6 +11,9 @@ const formReducer = (state, event) => {
 function App() {
   const [formData, setFormData] = useReducer(formReducer, {});
   const [formData2, setFormData2] = useReducer(formReducer, {});
+  const [formData3, setFormData3] = useReducer(formReducer, {});
+  const [formData4, setFormData4] = useReducer(formReducer, {});
+  const [formData5, setFormData5] = useReducer(formReducer, {});
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = event => {
@@ -19,7 +22,7 @@ function App() {
 
     setTimeout(() => {
       setSubmitting(false);
-    }, 5000);
+    }, 20000);
   }
 
   const handleChange = event => {
@@ -35,20 +38,54 @@ function App() {
       value: event.target.value,
     });
   }
+  const handleChange3 = event => {
+    setFormData3({
+      name: event.target.name,
+      value: event.target.value,
+    });
+  }
+
+  const handleChange4 = event => {
+    setFormData4({
+      name: event.target.name,
+      value: event.target.value,
+    });
+  }
+  const handleChange5 = event => {
+    setFormData5({
+      name: event.target.name,
+      value: event.target.value,
+    });
+  }
   return(
     <div className="estilo">
-      <h1>Usando formularios y eventos en React</h1>
+      <h1>Registro de Proveedor</h1>
       {submitting &&
        <div>
-         Tu realizaste Submit para la siguiente información:
+         Informacion de proveedor registrada:
          <ul>
            {Object.entries(formData).map(([name, value]) => (
-             <li key={name}><strong>Nombres</strong>: {value.toString()}</li>
+             <li key={name}><strong>Razon Social</strong>: {value.toString()}</li>
            ))}
          </ul>
          <ul>
            {Object.entries(formData2).map(([name, value]) => (
-             <li key={name}><strong>Apellidos</strong>: {value.toString()}</li>
+             <li key={name}><strong>NOmbre comercial</strong>: {value.toString()}</li>
+           ))}
+         </ul>
+         <ul>
+           {Object.entries(formData3).map(([name, value]) => (
+             <li key={name}><strong>RUC</strong>: {value.toString()}</li>
+           ))}
+         </ul>
+         <ul>
+           {Object.entries(formData4).map(([name, value]) => (
+             <li key={name}><strong>Nombre de contacto</strong>: {value.toString()}</li>
+           ))}
+         </ul>
+         <ul>
+           {Object.entries(formData5).map(([name, value]) => (
+             <li key={name}><strong>Telefono/celular</strong>: {value.toString()}</li>
            ))}
          </ul>
        </div>
@@ -56,12 +93,24 @@ function App() {
       <form onSubmit={handleSubmit}>
         <fieldset>
           <label>
-            <p>Nombres</p>
-            <input name="name" onChange={handleChange}/>
+            <p>Razon Social</p>
+            <input name="Razon social" onChange={handleChange}/>
           </label>
           <label>
-            <p>Apellidos</p>
-            <input name="ape" onChange={handleChange2}/>
+            <p>Nombre comercial</p>
+            <input name="Nombre comercial" onChange={handleChange2}/>
+          </label>
+          <label>
+            <p>RUC</p>
+            <input name="RUC" onChange={handleChange3}/>
+          </label>
+          <label>
+            <p>Nombre de contacto</p>
+            <input name="Nombre de contacto" onChange={handleChange4}/>
+          </label>
+          <label>
+            <p>Telefono/celular</p>
+            <input name="Telefono/celular" onChange={handleChange5}/>
           </label>
         </fieldset>
         <button type="submit">Submit</button>
